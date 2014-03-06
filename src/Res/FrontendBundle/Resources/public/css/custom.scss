@@ -9,9 +9,15 @@ html {
     position: relative;
 }
 
+a {
+    color: $white !important;
+}
+
 .res-navbar a {
     padding: 12px 15px;
 }
+
+.mt20 { margin-top: 20px; }
 
 /** Bootstrap overwrite **/
 .navbar {
@@ -93,15 +99,39 @@ section#who-we-are {
 
 footer {
     background-color: $black;
-    color: $white;
-    padding-top: 35px;
+    color: $light-gray;
+    padding-top: 50px;
+    min-height: 300px;
 
     h4 {
-        color: $light-gray;
         line-height: 24px;
         font-size: 14px;
         text-transform: uppercase;
         font-weight: bold;
         border-bottom: solid 1px $light-gray;
+    }
+
+    a {
+        color: $light-gray !important;
+        &:hover {
+            color: $white !important;
+        }
+    }
+
+    li {
+        margin-bottom: 8px;
+        line-height: 16px;
+        
+        .social-widget {
+            border-radius: 200px;
+            background-color: $white;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: $black;
+        }
     }
 }
