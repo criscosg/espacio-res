@@ -1,0 +1,12 @@
+_welcome:
+    pattern:  /
+    defaults: { _controller: FrontendBundle:Welcome:index }
+
+_demo_secured:
+    resource: "@FrontendBundle/Controller/SecuredController.php"
+    type:     annotation
+
+_demo:
+    resource: "@FrontendBundle/Controller/DemoController.php"
+    type:     annotation
+    prefix:   /demo

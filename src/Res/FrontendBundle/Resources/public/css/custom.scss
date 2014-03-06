@@ -1,0 +1,107 @@
+/*VARIABLES*/
+$background-dark: #EEEEEE;
+$background-light: #FFFFFF;
+$black: #1B1B1B;
+$white: #FFFFFF;
+$light-gray: #999999;
+
+html {
+    position: relative;
+}
+
+.res-navbar a {
+    padding: 12px 15px;
+}
+
+/** Bootstrap overwrite **/
+.navbar {
+    min-height: 40px;
+}
+
+.navbar-inverse {
+    background-color: $black;
+}
+
+.navbar .nav > li > a {
+    padding: 12px 15px;
+}
+
+
+/** Custom **/
+#banner-top {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    text-align: center;
+    margin-top: 40px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    .image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 20;
+        img {
+            width: 100%;
+        }
+    }
+
+    .text {
+        position: relative;
+        text-align: center;
+        z-index: 30;
+        color: #FFF;
+        padding-top: 110px;
+    }
+}
+
+section {
+    display: block;
+
+    .container {
+        padding: 70px 0;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 800px;    
+    }
+
+    .bg-parallax {
+        min-height: 400px;
+        background-position: 50% center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+
+section.dark {
+    background-color: $background-dark;
+}
+
+section.light {
+    background-color: $background-light;
+}
+
+section#who-we-are {
+    .bg-parallax {
+        background-image: url('../img/banner-top-home.jpg');
+    }
+}
+
+footer {
+    background-color: $black;
+    color: $white;
+    padding-top: 35px;
+
+    h4 {
+        color: $light-gray;
+        line-height: 24px;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-bottom: solid 1px $light-gray;
+    }
+}

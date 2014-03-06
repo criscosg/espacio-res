@@ -1,0 +1,60 @@
+{% extends "FrontendBundle:Layouts:1column-fluid.html.twig" %}
+
+{% block title %}{{ "Proyecto Res "|trans }}{% endblock %}
+{% block description %}{{"Un proyecto muy bonito"|trans}}{% endblock %}
+
+{% block header %}
+  {{ parent() }}
+  <div id="banner-top">
+    <div class="image">
+      <img src="{{asset('bundles/frontend/img/banner-top-home.jpg')}}">
+    </div>
+    <div class="container clearfix">
+      <div class="row">
+        <div class="text">
+          <h1>Rent a space, launch an idea</h1>
+          <h2>Hundreds of exclusive spaces nationwide, ready to be filled with your idea.</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <section id="our-work" class="dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Hii!</p>
+        </div>
+      </div><!-- .row -->
+    </div><!-- .container -->
+  </section><!-- #our-work -->
+
+  <section id="who-we-are" class="light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Hii!</p>
+        </div>
+      </div><!-- .row -->
+    </div><!-- .container -->
+
+    <div class="bg-parallax"></div>
+  </section><!-- #who-we-arek -->
+
+  <section id="events" class="dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Hii!</p>
+        </div>
+      </div><!-- .row -->
+    </div><!-- .container -->
+  </section><!-- #events -->
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
