@@ -1,6 +1,6 @@
-_welcome:
+frontend_homepage:
     pattern:  /
-    defaults: { _controller: FrontendBundle:Welcome:index }
+    defaults: { _controller: FrontendBundle:Frontend:index }
 
 _demo_secured:
     resource: "@FrontendBundle/Controller/SecuredController.php"

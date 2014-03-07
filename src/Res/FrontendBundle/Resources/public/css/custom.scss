@@ -4,17 +4,44 @@ $background-light: #FFFFFF;
 $black: #1B1B1B;
 $white: #FFFFFF;
 $light-gray: #999999;
+$yellow: #C39F4C;
+$blue: #2ABCBD;
 
 html {
     position: relative;
 }
 
+body {
+    background-color: $background-dark;
+    font-family: Sans-Serif, Helvetica, Arial;
+}
+
 a {
     color: $white !important;
+    outline: none !important;
 }
 
 .res-navbar a {
     padding: 12px 15px;
+}
+
+.title {
+    font-size: 40px;
+    color: $blue;
+    line-height: 40px;
+    margin-bottom: 30px;
+}
+
+.icon-title {
+    font-size: 44px;
+    color: #333;
+    font-weight: normal;
+}
+
+.quote {
+    font-style: italic;
+    color: $light-gray;
+    font-size: 20px;
 }
 
 .mt20 { margin-top: 20px; }
@@ -22,6 +49,14 @@ a {
 /** Bootstrap overwrite **/
 .navbar {
     min-height: 40px;
+
+    a {
+        color: $light-gray !important;
+
+        &:hover {
+            color: $white !important;
+        }
+    }
 }
 
 .navbar-inverse {
@@ -66,12 +101,13 @@ a {
 
 section {
     display: block;
+    position: relative;
 
     .container {
         padding: 70px 0;
         margin-left: auto;
         margin-right: auto;
-        max-width: 800px;    
+        max-width: 950px;    
     }
 
     .bg-parallax {
@@ -83,12 +119,21 @@ section {
     }
 }
 
-section.dark {
-    background-color: $background-dark;
+section.light {
+    background-color: $background-light;
 }
 
 section.light {
-    background-color: $background-light;
+    &:before {
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAJ0lEQVQIW2NkwA4kGbGISwLFnqNLgAVBipEl4ILIEiiCMAkMQZAEADf0BSAVgBNTAAAAAElFTkSuQmCC") repeat scroll 0 0 rgba(0, 0, 0, 0);
+        content: "";
+        display: block;
+        height: 10px;
+        left: 0;
+        top: 0;
+        right: 0;
+        position: absolute;
+    }
 }
 
 section#who-we-are {
@@ -133,5 +178,99 @@ footer {
             text-align: center;
             color: $black;
         }
+    }
+}
+
+.btn-blue {
+    border: solid 2px $light-gray;
+    color: $light-gray;
+    
+    &:hover {
+        background: none repeat scroll 0 0 $blue !important;
+        color: $white !important;
+        border-color: $blue;
+    }
+}
+
+form {
+    label {
+        color: $light-gray;
+        font-weight: normal;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    .btn-large {
+        padding: 5px 30px;
+        border-radius: 0px !important;
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    .required {
+        &:after {
+            content: "*";
+            display: inline-block;
+            margin-left: 5px;
+            width: 10px;
+            position: absolute;
+            top: 0;
+        }
+    }
+}
+
+.nav-boxes {
+    margin-bottom: 50px;
+    margin-top: 35px;
+    border: solid 1px #CCCCCC;
+    color: $light-gray;
+    text-transform: uppercase;
+
+    .active {
+        background-color: $white;
+
+        a {
+            color: $blue !important;
+            font-weight: bold;
+        }
+    }
+
+    li {
+        border-right: solid 1px #CCCCCC;
+
+        &:last-child {
+            border-right: none !important;
+        }
+
+        a {
+            padding: 20px 15px;
+            color: $light-gray !important;
+
+            &:hover {
+                background-color: $white;
+                color: $blue !important;
+            }
+
+            &:focus {
+                background-color: $white;
+                color: $blue !important;
+            }
+        }
+    }
+}
+
+#contact-tabs {
+    div {
+        display: none;
+    }
+
+    .tab-active {
+        display: block !important;
     }
 }

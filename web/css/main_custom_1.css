@@ -2,15 +2,44 @@
 html {
   position: relative; }
 
+body {
+  background-color: #eeeeee; }
+
+a {
+  color: white !important; }
+
 .res-navbar a {
   padding: 12px 15px; }
+
+.title {
+  font-size: 40px;
+  color: #2abcbd;
+  line-height: 40px;
+  margin-bottom: 30px; }
+
+.icon-title {
+  font-size: 44px;
+  color: #333;
+  font-weight: normal; }
+
+.quote {
+  font-style: italic;
+  color: #999999;
+  font-size: 20px; }
+
+.mt20 {
+  margin-top: 20px; }
 
 /** Bootstrap overwrite **/
 .navbar {
   min-height: 40px; }
+  .navbar a {
+    color: #999999 !important; }
+    .navbar a:hover {
+      color: white !important; }
 
 .navbar-inverse {
-  background-color: #1B1B1B; }
+  background-color: #1b1b1b; }
 
 .navbar .nav > li > a {
   padding: 12px 15px; }
@@ -19,7 +48,7 @@ html {
 #banner-top {
   position: relative;
   width: 100%;
-  height: 475px;
+  height: 600px;
   overflow: hidden;
   text-align: center;
   margin-top: 40px;
@@ -42,21 +71,72 @@ html {
     padding-top: 110px; }
 
 section {
-  display: block; }
-  section #who-we-are .bg-parallax {
-    background-image: url("../../bundles/frontend/img/banner-top-home.jpg"); }
+  display: block;
+  position: relative; }
   section .container {
     padding: 70px 0;
     margin-left: auto;
     margin-right: auto;
-    max-width: 800px; }
-  section .dark {
-    background-color: #eeeeee; }
-  section .light {
-    background-color: white; }
+    max-width: 950px; }
   section .bg-parallax {
     min-height: 400px;
     background-position: 50% center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; }
+
+section.light {
+  background-color: white; }
+
+section.light:before {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAJ0lEQVQIW2NkwA4kGbGISwLFnqNLgAVBipEl4ILIEiiCMAkMQZAEADf0BSAVgBNTAAAAAElFTkSuQmCC") repeat scroll 0 0 rgba(0, 0, 0, 0);
+  content: "";
+  display: block;
+  height: 10px;
+  left: 0;
+  top: 0;
+  right: 0;
+  position: absolute; }
+
+section#who-we-are .bg-parallax {
+  background-image: url("../../bundles/frontend/img/banner-top-home.jpg"); }
+
+footer {
+  background-color: #1b1b1b;
+  color: #999999;
+  padding-top: 50px;
+  min-height: 300px; }
+  footer h4 {
+    line-height: 24px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: solid 1px #999999; }
+  footer a {
+    color: #999999 !important; }
+    footer a:hover {
+      color: white !important; }
+  footer li {
+    margin-bottom: 8px;
+    line-height: 16px; }
+    footer li .social-widget {
+      border-radius: 200px;
+      background-color: white;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      color: #1b1b1b; }
+
+.btn-blue {
+  border: solid 2px #999999;
+  color: #999999; }
+  .btn-blue:hover {
+    background: none repeat scroll 0 0 #2abcbd !important;
+    color: white !important;
+    border-color: #2abcbd; }
+
+form label {
+  color: #999999; }
