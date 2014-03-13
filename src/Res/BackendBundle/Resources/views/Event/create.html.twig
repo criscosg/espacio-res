@@ -1,0 +1,100 @@
+{% extends "BackendBundle:Layouts:2column.html.twig" %}
+{%  set edit = "Edición de evento"|trans %}
+{%  set create = "Creación de evento"|trans %}
+
+{% block title_section %}
+    {% if edition is defined %}
+        {{ edit }}
+    {% else %}
+        {{ create }}
+    {% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css"  href="{{ asset('bundles/backend/css/select2.css') }}">
+<link rel="stylesheet" type="text/css"  href="{{ asset('bundles/backend/css/select2-bootstrap.css') }}">
+<link rel="stylesheet" type="text/css"  href="{{ asset('bundles/backend/css/datepicker.css') }}">
+{% endblock %}
+{% block breadcrumb %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon">
+                <i class="fa fa-pencil"></i>
+            </span>
+            {% if edition is defined %}
+                <h5>{{ edit }}</h5>
+            {% else %}
+                <h5>{{ "Nuevo evento"|trans }}</h5>
+            {% endif %}
+        </div>
+        <div class="widget-content nopadding">
+            <form class="form-horizontal" id="form-create-item" role="form"
+                action="{% if edition is defined %}{{ path('admin_events_edit',{'id':event.id}) }} {% else %} {{ path('admin_events_create') }} {% endif %}"
+                method="post" {{ form_enctype(form) }} xmlns="http://www.w3.org/1999/html">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label"><span class="red">*</span> {{ "Titulo"|trans }}</label>
+
+                    <div class="col-sm-10">
+                        {{ form_widget(form.title, { 'attr': { 'class': 'form-control required', 'maxlength' : '70'} }) }}
+                        <p class="help-block">
+                            {{"Tienes como máximo" | trans }}
+                            <span id="charsLeft" class="red"></span>
+                            {{"caracteres para escribir" | trans }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label"><span class="red">*</span> {{ "Descripción"|trans }}</label>
+
+                    <div class="col-sm-10">
+                        {{ form_widget(form.description, { 'attr': { 'class': 'form-control required'} }) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label"><span class="red">*</span> {{ "Fecha"|trans }}</label>
+
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                          {{ form_widget(form.date, { 'attr': { 'class': 'form-control required'} }) }}
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i><span>
+                        </div>
+                    </div>
+                </div>
+
+                {{form_rest(form)}}
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-sm-10">
+                        <button id="register" type="submit" class="btn btn-primary">
+                            {{ "Guardar cambios"|trans }}
+                        </button>
+                        <img style="display:none;" class="ml15 loader pull-lef" src="{{ asset('bundles/frontend/img/ajax-loader.gif') }}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/backend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/backend/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('bundles/backend/js/jquery.icheck.min.js') }}"></script>
+    <script src="{{ asset('bundles/backend/js/select2.min.js') }}"></script>
+    <script src="{{ asset('bundles/backend/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bundles/backend/js/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('bundles/backend/js/unicorn.js') }}"></script>
+    <script src="{{ asset('bundles/backend/js/unicorn.tables.js') }}"></script>
+    <script src="{{ asset('bundles/backend/js/jquery.validate.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#event_type_date').datepicker({'format' : 'dd-mm-yyyy'});
+        });
+    </script>
+{% endblock %}

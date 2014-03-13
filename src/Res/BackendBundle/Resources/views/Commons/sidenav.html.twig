@@ -1,0 +1,9 @@
+{% set action = app.request.attributes.get('_route') %}
+{% set params = app.request.attributes.get('_route_params') %}
+<div id="sidebar">
+    <ul>
+        <li class="{% if action == 'admin_events_index' or action == 'admin_events_create' or action == 'admin_events_edit' %}active open{% endif %}">
+            <a href="{{ path('admin_events_index') }}"><i class="fa fa-calendar-o"></i> <span>{{ "Eventos"|trans }}</span></a>
+        </li>
+    </ul>
+</div>

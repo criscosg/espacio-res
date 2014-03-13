@@ -1,0 +1,11 @@
+parameters:
+    image.createformhandler.class: Res\ImageBundle\Form\Handler\CreateImageFormHandler
+    image.manager.class: Res\ImageBundle\Form\Handler\ImageManager
+
+services:
+    image.manager:
+        class: %image.manager.class%
+        arguments: [@doctrine.orm.entity_manager]
+    image.create_image_form_handler:
+        class: %image.createformhandler.class%
+        arguments: [@image.manager, @validator]

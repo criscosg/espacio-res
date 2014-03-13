@@ -1,0 +1,11 @@
+parameters:
+    event.createformhandler.class: Res\EventBundle\Form\Handler\CreateEventFormHandler
+    event.manager.class: Res\EventBundle\Form\Handler\EventManager
+
+services:
+    event.manager:
+        class: %event.manager.class%
+        arguments: [@doctrine.orm.entity_manager]
+    event.create_event_form_handler:
+        class: %event.createformhandler.class%
+        arguments: [@event.manager]

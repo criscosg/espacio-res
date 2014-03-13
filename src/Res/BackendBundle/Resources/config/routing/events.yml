@@ -1,0 +1,15 @@
+admin_events_index:
+    pattern: /
+    defaults: { _controller: BackendBundle:Event:index }
+
+admin_events_create:
+    pattern: /create
+    defaults: { _controller: BackendBundle:Event:create }
+
+admin_events_edit:
+    pattern: /edit/{id}
+    defaults: { _controller: BackendBundle:Event:edit }
+
+admin_events_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: BackendBundle:Event:delete }

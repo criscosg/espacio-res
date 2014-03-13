@@ -1,0 +1,17 @@
+parameters:
+    admin_user.manager.class: Res\BackendBundle\Form\Handler\AdminUserManager
+    admin_user.createformhandler.class: Res\BackendBundle\Form\Handler\CreateAdminUserFormHandler
+    admin_user.create_listener.class: Res\BackendBundle\EventListener\CreateAdminUserListener
+
+services:
+    admin_user.manager:
+        class: %admin_user.manager.class%
+        arguments: [@doctrine.orm.entity_manager]
+    admin_user.create_form_handler:
+        class: %admin_user.createformhandler.class%
+        arguments: [@admin_user.manager]
+    admin_user.create_listener:
+        class: %admin_user.create_listener.class%
+        arguments: [@security.encoder_factory]
+        tags:
+            - { name: doctrine.event_subscriber }
