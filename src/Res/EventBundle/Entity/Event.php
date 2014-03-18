@@ -7,8 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Res\ImageBundle\Entity\ImageEvent;
 
 /**
- * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity()
  */
 class Event
 {

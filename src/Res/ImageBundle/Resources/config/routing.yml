@@ -1,3 +1,7 @@
-image_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ImageBundle:Default:index }
+remove_image:
+    pattern: /eliminar_foto/{id}
+    defaults: { _controller: ImageBundle:Image:deleteImage }
+
+change_image_main:
+    pattern: /cambiar-imagen-principal/{slugEvent}/{idImage}
+    defaults: { _controller: ImageBundle:Image:changeImageMain }

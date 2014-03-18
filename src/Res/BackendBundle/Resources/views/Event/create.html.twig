@@ -33,9 +33,9 @@
             {% endif %}
         </div>
         <div class="widget-content nopadding">
-            <form class="form-horizontal" id="form-create-item" role="form"
-                action="{% if edition is defined %}{{ path('admin_events_edit',{'id':event.id}) }} {% else %} {{ path('admin_events_create') }} {% endif %}"
-                method="post" {{ form_enctype(form) }} xmlns="http://www.w3.org/1999/html">
+            <form class="form-horizontal" id="form-create-event" role="form"
+                action="{% if edition is defined %}{{ path('admin_events_edit',{'id':event.id}) }}{% else %}{{ path('admin_events_create') }}{% endif %}"
+                method="post" {{ form_enctype(formImage) }} xmlns="http://www.w3.org/1999/html">
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label"><span class="red">*</span> {{ "Titulo"|trans }}</label>
 
@@ -68,6 +68,39 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">{{ "Imágenes"|trans }}</label>
+
+                    <div class="col-sm-10" id="images_event">
+                        <div class="input-file-upload-wrap">
+                            <input type="file" multiple="multiple" name="res_multipleuploadfiles[images][]" id="res_multipleuploadfiles_images">
+                        </div>
+                        {% if event is defined %}
+                            {% for image in event.images %}
+                                {% if image.deletedDate == null %}
+                                    {% set imagePath= image.ImageEventCarouselThumbnail.getWebFilePath ~ '?' ~ random() %}
+                                    {% set direction = image.getSubdirectory  %}
+                                    {% set imagePathProfile = 'uploads/'~ direction ~ '/' ~ image.image ~ '?' ~ random() %}
+                                    <div class="image-box-item">
+                                        <div class="image-item" style="background-image:url('{{ asset(imagePath) }}');">
+                                        </div>
+                                        <div class="options">
+                                            <div class="{% if image.main %}image-item-main{% else %}image-item-no-main{% endif %}">
+                                                <a title="{% if image.main %}{{ 'Principal'|trans }}{% else %}{{ 'No principal'|trans }}{% endif %}" class="main" href="{{ path('change_image_main', {slugEvent:event.slug, idImage:image.id}) }}">
+                                                    <i class="fa {% if image.main %}fa-star{% else %}fa-star-o{% endif %}"></i>
+                                                </a>
+                                                <a title="{{ 'Eliminar'|trans }}" class="delete" href="{{ path('remove_image', {id:image.id}) }}">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
                 {{form_rest(form)}}
                 <div class="form-group">
                     <div class="col-md-offset-2 col-sm-10">
@@ -91,6 +124,8 @@
     <script src="{{ asset('bundles/backend/js/unicorn.js') }}"></script>
     <script src="{{ asset('bundles/backend/js/unicorn.tables.js') }}"></script>
     <script src="{{ asset('bundles/backend/js/jquery.validate.js') }}"></script>
+
+    {% include 'EventBundle:Commons:eventScripts.html.twig' %}
 
     <script type="text/javascript">
         $(document).ready(function() {

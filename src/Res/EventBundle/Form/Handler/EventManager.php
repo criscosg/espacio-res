@@ -19,6 +19,5 @@ class EventManager
     {
         $this->entityManager->persist($event);
         $this->entityManager->flush();
-        ldd($event);
     }
 }

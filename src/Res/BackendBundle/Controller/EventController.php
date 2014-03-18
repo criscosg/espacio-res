@@ -27,14 +27,15 @@ class EventController extends CustomController
         $formImage = $this->createForm(new MultipleUploadFilesType());
         $request = $this->getRequest();
         $formHandler = $this->get('event.create_event_form_handler');
+
         if ($formHandler->handle($form, $request)) {
             $this->setTranslatedFlashMessage("Evento creado");
-            
+            $formImgHandler = $this->get('image.create_image_form_handler');
+            if($formImgHandler->handleMultiple($formImage, $request, $event))
                 return $this->redirect($this->generateUrl('admin_events_index'));
-
         }
 
-        return $this->render('BackendBundle:Event:create.html.twig', array('form' => $form->createView()));
+        return $this->render('BackendBundle:Event:create.html.twig', array('form' => $form->createView(), 'formImage' => $formImage->createView()));
     }
 
     /*
@@ -44,16 +45,19 @@ class EventController extends CustomController
     {
         $form = $this->createForm(new EventType(), $event);
         $request = $this->getRequest();
+        $formImage = $this->createForm(new MultipleUploadFilesType());
         $formHandler = $this->get('event.create_event_form_handler');
 
         if ($formHandler->handle($form, $request)) {
             $this->setTranslatedFlashMessage("Evento Modificado");
+            $formImgHandler = $this->get('image.create_image_form_handler');
+            $formImgHandler->handleMultiple($formImage, $request, $event);
 
             return $this->redirect($this->generateUrl('admin_events_index'));
         }
 
         return $this->render('BackendBundle:Event:create.html.twig', array('form' => $form->createView(),
-            'edition' => true, 'event' => $event));
+            'edition' => true, 'event' => $event, 'formImage' => $formImage->createView()));
     }
 
     /*

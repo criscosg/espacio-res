@@ -1,0 +1,57 @@
+<script src="{{ asset('bundles/frontend/js/jquery.limit.js') }}"></script>
+<script type="text/javascript">
+    /** VALIDATION **/
+    $(function(){
+        var validator = $('#form-create-event').validate({
+            rules: {
+                'event_type[title]': {
+                    required: true
+                },
+                'event_type[description]': {
+                    required: true
+                },
+                'event_type[date]': {
+                    required: true
+                },
+            },
+            errorElement: 'span',
+            messages: {
+                'event_type[title]': '{{ "El título es obligatorio"|trans }}',
+                'event_type[date]': '{{ "La fecha es obligatoria"|trans }}',
+                'event_type[description]': '{{ "La descripción es obligatoria"|trans }}',
+            }
+        });
+    });
+
+    $(document).ready(function(){
+        //Límite de caracteres
+        $('#event_type_title').limit('70','#charsLeft');
+
+        $('#images_event').delegate('a.delete', 'click', function(event){
+            event.preventDefault();
+            var href = $(this).attr('href');
+            var parent = $(this).parent().parent().parent().children('div.image-item');
+            if (confirm('{{ "¿Estas seguro que quieres borrarlo?" | trans() }}')) {
+                $.post(href, function(response){
+                    if (response.ok) {
+                        $(parent).parent().remove();
+                    }
+                });
+            }
+        });
+
+        $('#images_event').delegate('a.main', 'click', function(event){
+            event.preventDefault();
+            var href = $(this).attr('href');
+            var parent = $(this).parent('.image-item-no-main');
+            $.post(href, function(response){
+                if (response.ok) {
+                    $('.image-item-main').children().children('i.fa-star').removeClass('fa-star').addClass('fa-star-o');
+                    $(parent).children().children('i.fa-star-o').removeClass('fa-star-o').addClass('fa-star');
+                    $('.image-item-main').removeClass('image-item-main').addClass('image-item-no-main');
+                    $(parent).attr('class','image-item-main');
+                }
+            });
+        });
+    });
+</script>

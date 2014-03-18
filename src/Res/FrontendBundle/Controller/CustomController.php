@@ -32,4 +32,12 @@ class CustomController extends Controller
             'last_username' => $sesion->get(SecurityContext::LAST_USERNAME),
             'error' => $error));
     }
+
+    protected function getHttpJsonResponse($jsonResponse)
+    {
+        $response = new \Symfony\Component\HttpFoundation\Response($jsonResponse);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
 }

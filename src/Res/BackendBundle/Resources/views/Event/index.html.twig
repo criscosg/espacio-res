@@ -56,6 +56,7 @@
                             <td><a title="Modificar" href="{{ path('admin_events_edit', {'id' : event.id}) }}">{{ event.title }}</a></td>
                             <td>{{ event.description }}</td>
                             <td class="taskOptions">
+                                <a title="Modificar" href="{{ path('admin_events_edit', {'id' : event.id}) }}"><i class="fa fa-pencil"></i></a>
                                 <a title="Borrar" class="delete" href="{{ path('admin_events_delete', {'id' : event.id}) }}"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>

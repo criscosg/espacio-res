@@ -6,12 +6,15 @@
 {% block header %}
   {{ parent() }}
   <div id="banner-top">
+    <div class="overlay"></div>
     <div class="image">
+      {#<img src="{{asset('bundles/frontend/img/resilencia-banner-top.jpg')}}">#}
       <img src="{{asset('bundles/frontend/img/banner-top-home.jpg')}}">
     </div>
     <div class="container clearfix">
       <div class="row">
         <div class="text">
+          <img src="{{asset('bundles/frontend/img/logo.png')}}">
           <h1>Rent a space, launch an idea</h1>
           <h2>Hundreds of exclusive spaces nationwide, ready to be filled with your idea.</h2>
         </div>
