@@ -5,3 +5,7 @@ get_events:
 get_event_detail:
     pattern: /get-event-detail/
     defaults: { _controller: EventBundle:Event:getEventDetail }
+
+view_event:
+    pattern: /view-event/{slug}
+    defaults: { _controller: EventBundle:Event:viewEvent }

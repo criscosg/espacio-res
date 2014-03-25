@@ -10,8 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ImageEventCarousel extends ImageCopy
 {
-    protected $maxWidth = 835;
-    protected $maxHeight = 492;
+    protected $maxWidth = 910;
+    protected $maxHeight = 536;
     protected $sufix = "carousel";
     protected $crop = true;
 }

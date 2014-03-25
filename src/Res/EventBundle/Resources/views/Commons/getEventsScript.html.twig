@@ -40,17 +40,11 @@
 
       var date = new Date();
       var month = date.getMonth() + 1;
-      var year = date.getFullYear();
-      var overlay = $('#event-overlay'),
+      var year = date.getFullYear(),
       event_info = $('#event-info');
 
-      overlay.on('click', function(event) {
-        event_info.hide();
-        $(this).hide();
-      });
-
       $(window).resize(function() {
-        calculateMargin();
+        //calculateMargin();
       });
 
       function getEvents(month, year) {
@@ -71,7 +65,7 @@
       function addEventMouseOver(event) {
         $('td[data-date="'+ event.date +'"]').mouseover(function (e) {
           $(this).addClass('txt-shadow');
-          $(this).css({'background-size' : 'cover', 'background-image' : "url(" + event.img + ")", 'color' : '#FFFFFF'});
+          $(this).css({'background-size' : 'cover', 'background-image' : "url(" + event.img + ")", 'color' : '#FFFFFF', 'cursor' : 'pointer'});
         });
       }
 
@@ -83,35 +77,29 @@
       }
 
       function addEventClick(event) {
+        var id = event.id;
         $('td[data-date="'+ event.date +'"]').click(function (e) {
-          $.post('{{ path("get_event_detail") }}', {'id': event.id }, function(response){
+          $.post('{{ path("get_event_detail") }}', {'id': id }, function(response){
 
             if (response.ok) {
                 var event = response.event,
                 event_title = $('#event-title'),
                 event_description = $('#event-description'),
                 event_img = $('#event-img'),
-                readMore;
+                readMore,
+                titleLink;
 
-                readMore = "<a title=\"{{'Leer más' | trans}}\" href=\"{{ path("get_event_detail") }}\">Leer más</a>";
+                readMore = "<a title=\"{{'Leer más' | trans}}\" href=\"" + event.eventPath + "\">Leer más</a>";
+                titleLink = "<a title=\"{{'Ver evento' | trans}}\" href=\"" + event.eventPath + "\">" + event.title + "</a>"
 
-                event_title.children('a').text(event.title);
+                event_title.html(titleLink);
                 event_description.html(wrapText(event.description, 240) + readMore);
                 event_img.attr('src', event.img);
 
-                //overlay.removeClass('hide');
-                //event_info.removeClass('hide');
-                overlay.show();
-                event_info.show(700);
+                event_info.collapse('toggle');
             }
           });
         });
-      }
-
-      function calculateMargin() {
-        var width = event_info.width();
-
-        event_info.css({'marginLeft' : '-' + width/2 + 'px'});
       }
 
       function addIcon(date) {
@@ -121,15 +109,23 @@
       $('.fc-button-next').click(function() {
         var d = $('#events-calendar').fullCalendar('getDate');
         getEvents(d.getMonth() + 1, d.getFullYear());
+
+        closeCollapse();
       });
 
       $('.fc-button-prev').click(function() {
         var d = $('#events-calendar').fullCalendar('getDate');
         getEvents(d.getMonth() + 1, d.getFullYear());
+
+        closeCollapse();
       });
 
+      function closeCollapse() {
+        if (event_info.hasClass('in'))
+          event_info.collapse('hide');
+      }
+
       getEvents(month, year);
-      calculateMargin();
 
       /** Wrap event text **/
       function wrapText(str, maxCharacters) {

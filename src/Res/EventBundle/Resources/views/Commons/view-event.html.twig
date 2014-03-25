@@ -1,0 +1,53 @@
+{% extends "FrontendBundle:Layouts:1column-fluid.html.twig" %}
+
+{% block title %}{{ "Evento"|trans }}{% endblock %}
+{% block description %}{{"Mi evento precioso"|trans}}{% endblock %}
+{% block stylesheets %}
+  {{parent()}}
+{% endblock %}
+
+{% block header %}
+  {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="section-title">{{ event.title }}</h1>
+                </div>
+            </div><!-- .row -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="column-main">
+                        <div class="carousel">
+                            {{ drawBxSlider(getEventImgsDetail(event)) | raw }}
+                        </div>
+
+                        <div class="content clearfix">
+                            <div class="col-md-9">
+                                <h4>{{'Descripción' | trans}}</h4>
+                                <p>{{ event.description }}</p>
+                            </div>
+
+                            <div class="col-md-3">
+asd
+                            </div>
+                        </div><!-- .content -->
+                    </div>
+                </div>
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </section>
+{% endblock %}
+
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

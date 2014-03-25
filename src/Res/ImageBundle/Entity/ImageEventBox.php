@@ -10,8 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ImageEventBox extends ImageCopy
 {
-    protected $maxWidth = 358;
-    protected $maxHeight = 225;
+    protected $maxWidth = 410;
+    protected $maxHeight = 258;
     protected $sufix = "box";
     protected $crop = true;
 }

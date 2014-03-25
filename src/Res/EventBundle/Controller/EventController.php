@@ -5,6 +5,7 @@ namespace Res\EventBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Res\FrontendBundle\Controller\CustomController;
 use Res\EventBundle\Entity\Event;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class EventController extends CustomController
 {
@@ -54,15 +55,26 @@ class EventController extends CustomController
                 return $this->noPermission();
             }
 
-            $path = $event->getImageMain()->getImageEventCarousel()->getWebFilePath();
+            $path = $event->getImageMain()->getImageEventBox()->getWebFilePath();
             $path = $this->container->get('templating.helper.assets')->getUrl($path);
 
-            $eventJSON = array('id' => $event->getId(), 'title' => $event->getTitle(),
+            $eventPagePath = $this->generateUrl('view_event', array('slug' => $event->getSlug()));
+
+            $eventJSON = array('id' => $event->getId(), 'eventPath' => $eventPagePath, 'title' => $event->getTitle(),
                     'img' => $path, 'date' => $event->getFormatDate(), 'description' => $event->getDescription());
 
             $jsonResponse = json_encode(array('ok' => true, 'event' => $eventJSON));
         }
 
         return $this->getHttpJsonResponse($jsonResponse);
+    }
+
+    /*
+    * @ParamConverter('$event', class='EventBundle:Event')
+    */
+    public function viewEventAction(Event $event)
+    {
+
+        return $this->render('EventBundle:Commons:view-event.html.twig', array('event' => $event));
     }
 }
