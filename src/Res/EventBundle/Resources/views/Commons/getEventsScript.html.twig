@@ -49,6 +49,10 @@
         $(this).hide();
       });
 
+      $(window).resize(function() {
+        calculateMargin();
+      });
+
       function getEvents(month, year) {
         $.post('{{ path("get_events") }}', {'month': month, 'year' : year }, function(response){
           if (response.ok) {
@@ -86,17 +90,19 @@
                 var event = response.event,
                 event_title = $('#event-title'),
                 event_description = $('#event-description'),
-                event_img = $('#event-img');
+                event_img = $('#event-img'),
+                readMore;
 
-                event_title.text(event.title);
-                event_description.text(event.description);
+                readMore = "<a title=\"{{'Leer más' | trans}}\" href=\"{{ path("get_event_detail") }}\">Leer más</a>";
+
+                event_title.children('a').text(event.title);
+                event_description.html(wrapText(event.description, 240) + readMore);
                 event_img.attr('src', event.img);
 
                 //overlay.removeClass('hide');
                 //event_info.removeClass('hide');
                 overlay.show();
-                event_info.show();
-                calculateMargin();
+                event_info.show(700);
             }
           });
         });
@@ -123,5 +129,19 @@
       });
 
       getEvents(month, year);
+      calculateMargin();
+
+      /** Wrap event text **/
+      function wrapText(str, maxCharacters) {
+        var result, slice_index;
+
+        result = str.slice(maxCharacters - 1);
+
+        slice_index = result.indexOf(' ');
+
+        result = str.slice(0, (maxCharacters - 1) + slice_index) + '...';
+
+        return result;
+      }
     });
   </script>

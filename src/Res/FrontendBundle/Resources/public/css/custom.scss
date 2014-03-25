@@ -316,6 +316,10 @@ form {
     left: 50%;
     display: none;
 
+    a {
+        color: $blue !important;
+    }
+
     .container {
         max-width: 560px;
     }
