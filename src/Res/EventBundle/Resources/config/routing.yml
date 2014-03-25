@@ -1,3 +1,7 @@
-event_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EventBundle:Default:index }
+get_events:
+    pattern:  /get-events/
+    defaults: { _controller: EventBundle:Event:getEvents }
+
+get_event_detail:
+    pattern: /get-event-detail/
+    defaults: { _controller: EventBundle:Event:getEventDetail }

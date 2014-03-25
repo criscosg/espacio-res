@@ -5,9 +5,10 @@ namespace Res\EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Res\ImageBundle\Entity\ImageEvent;
+use Res\EventBundle\Entity\EventRepository;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Res\EventBundle\Entity\EventRepository")
  */
 class Event
 {
@@ -161,5 +162,12 @@ class Event
         }
 
         return false;
+    }
+
+    public function getFormatDate()
+    {
+        $date = $this->getDate();
+
+        return $date->format('Y-m-d');
     }
 }

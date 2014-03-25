@@ -1,0 +1,175 @@
+$marginsm: 10px;
+
+@media (max-width: 979px) {
+  #banner-top{
+    height: 450px;
+    .container{
+      .text{
+        margin: 0 $marginsm;
+        padding-top: 60px;
+        .h1{
+          font-size: 32px;
+          line-height: 38px;
+        }
+        .h2{
+          font-size: 18px;
+          line-height: 22px;
+        }
+
+        img {
+          max-width: 170px;
+        }
+      }
+    }
+  }
+
+  section {
+    .container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #banner-top{
+    height: 250px;
+    .container{
+      .text{
+        margin: 0 $marginsm;
+        padding-top: 40px;
+        .h1{
+          font-size: 20px;
+          line-height: 20px;
+        }
+        .h2{
+          font-size: 18px;
+          line-height: 18px;
+        }
+
+        img {
+          max-width: 70px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  #banner-top{
+    height: 225px;
+    .container{
+      .text{
+        margin: 0 $marginsm;
+        padding-top: 40px;
+        .h1{
+          font-size: 20px;
+          line-height: 20px;
+        }
+        .h2{
+          font-size: 18px;
+          line-height: 18px;
+        }
+
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+
+  section {
+    .container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+  }
+
+  .fc-day{
+    .event-day {
+        margin-left: 8px;
+        margin-top: 5px;
+        font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  #banner-top{
+    height: 178px;
+    .container{
+      .text{
+        margin: 0 $marginsm;
+        padding-top: 20px;
+        .h1{
+          font-size: 18px;
+          line-height: 20px;
+        }
+        .h2{
+          font-size: 16px;
+          line-height: 18px;
+        }
+
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+
+  section {
+    .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+  }
+
+  .fc-day{
+    .event-day {
+        margin-left: 5px;
+        margin-top: 0px;
+        font-size: 1em;
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  body{
+    font-size:12px;
+  }
+
+  #banner-top{
+    height: 150px;
+    .container{
+      .text{
+        margin: 0 $marginsm;
+        padding-top: 20px;
+        .h1{
+          font-size: 14px;
+          line-height: 24px;
+        }
+        .h2{
+          font-size: 10px;
+          line-height: 14px;
+          text-transform: uppercase;
+        }
+
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .nav-boxes {
+    margin-top: 0px;
+  }
+
+  .fc-day{
+    .event-day {
+        margin-left: 5px;
+        margin-top: 0px;
+        font-size: 1em;
+    }
+  }
+}

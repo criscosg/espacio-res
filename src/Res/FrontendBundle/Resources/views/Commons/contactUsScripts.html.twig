@@ -1,0 +1,18 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.nav-boxes li a').bind('click', function(event) {
+      event.preventDefault();
+      var clicked = $(this);
+
+      if (!clicked.hasClass('active')) {
+        var element_active = $('.nav-boxes li.active');
+        var tab_active = $(element_active.children('a').attr('href'));
+        element_active.removeClass('active');
+        tab_active.removeClass('tab-active');
+        clicked.parent('li').addClass('active');
+        $(clicked.attr('href')).addClass('tab-active');
+      }
+
+    });
+  });
+</script>

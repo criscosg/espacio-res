@@ -1,0 +1,127 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#events-calendar').fullCalendar({
+        header:
+              {
+                left:  'prev',
+                center: 'title',
+                right:  'next'
+              },
+        monthNames :
+              ['{{ "Enero"|trans }}',
+               '{{ "Febrero"|trans }}',
+               '{{ "Marzo"|trans }}',
+               '{{ "Abril"|trans }}',
+               '{{ "Mayo"|trans }}',
+               '{{ "Junio"|trans }}',
+               '{{ "Julio"|trans }}',
+               '{{ "Agosto"|trans }}',
+               '{{ "Septiembre"|trans }}',
+               '{{ "Octubre"|trans }}',
+               '{{ "Noviembre"|trans }}',
+               '{{ "Diciembre"|trans }}'],
+        dayNames :
+              ['{{"Domingo"|trans}}',
+               '{{"Lunes"|trans}}',
+               '{{"Martes"|trans}}',
+               '{{"Miércoles"|trans}}',
+               '{{"Jueves"|trans}}',
+               '{{"Viernes"|trans}}',
+               '{{"Sábado"|trans}}'],
+        dayNamesShort:
+              ['{{"Dom"|trans}}',
+               '{{"Lun"|trans}}',
+               '{{"Mar"|trans}}',
+               '{{"Mie"|trans}}',
+               '{{"Jue"|trans}}',
+               '{{"Vie"|trans}}',
+               '{{"Sab"|trans}}'],
+      });
+
+      var date = new Date();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      var overlay = $('#event-overlay'),
+      event_info = $('#event-info');
+
+      overlay.on('click', function(event) {
+        event_info.hide();
+        $(this).hide();
+      });
+
+      function getEvents(month, year) {
+        $.post('{{ path("get_events") }}', {'month': month, 'year' : year }, function(response){
+          if (response.ok) {
+              var events = response.events;
+
+              for (var i = 0; i < events.length; i++) {
+                addEventMouseOver(events[i]);
+                addEventMouseOut(events[i]);
+                addEventClick(events[i]);
+                addIcon(events[i].date);
+              }
+          }
+        });
+      }
+
+      function addEventMouseOver(event) {
+        $('td[data-date="'+ event.date +'"]').mouseover(function (e) {
+          $(this).addClass('txt-shadow');
+          $(this).css({'background-size' : 'cover', 'background-image' : "url(" + event.img + ")", 'color' : '#FFFFFF'});
+        });
+      }
+
+      function addEventMouseOut(event) {
+        $('td[data-date="'+ event.date +'"]').mouseout(function (e) {
+          $(this).removeClass('txt-shadow');
+          $(this).css({'background-size' : 'cover', 'background-image' : "", 'color' : ''});
+        });
+      }
+
+      function addEventClick(event) {
+        $('td[data-date="'+ event.date +'"]').click(function (e) {
+          $.post('{{ path("get_event_detail") }}', {'id': event.id }, function(response){
+
+            if (response.ok) {
+                var event = response.event,
+                event_title = $('#event-title'),
+                event_description = $('#event-description'),
+                event_img = $('#event-img');
+
+                event_title.text(event.title);
+                event_description.text(event.description);
+                event_img.attr('src', event.img);
+
+                //overlay.removeClass('hide');
+                //event_info.removeClass('hide');
+                overlay.show();
+                event_info.show();
+                calculateMargin();
+            }
+          });
+        });
+      }
+
+      function calculateMargin() {
+        var width = event_info.width();
+
+        event_info.css({'marginLeft' : '-' + width/2 + 'px'});
+      }
+
+      function addIcon(date) {
+        $('td[data-date="'+ date +'"]').children('div').prepend('<i class="fa fa-bookmark event-day"></i>');
+      }
+
+      $('.fc-button-next').click(function() {
+        var d = $('#events-calendar').fullCalendar('getDate');
+        getEvents(d.getMonth() + 1, d.getFullYear());
+      });
+
+      $('.fc-button-prev').click(function() {
+        var d = $('#events-calendar').fullCalendar('getDate');
+        getEvents(d.getMonth() + 1, d.getFullYear());
+      });
+
+      getEvents(month, year);
+    });
+  </script>

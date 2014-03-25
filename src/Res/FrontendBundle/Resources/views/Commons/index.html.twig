@@ -2,6 +2,10 @@
 
 {% block title %}{{ "Proyecto Res "|trans }}{% endblock %}
 {% block description %}{{"Un proyecto muy bonito"|trans}}{% endblock %}
+{% block stylesheets %}
+  {{parent()}}
+  <link rel="stylesheet" href="{{asset('bundles/frontend/css/fullcalendar.css')}}">
+{% endblock %}
 
 {% block header %}
   {{ parent() }}
@@ -15,8 +19,8 @@
       <div class="row">
         <div class="text">
           <img src="{{asset('bundles/frontend/img/logo.png')}}">
-          <h1>Rent a space, launch an idea</h1>
-          <h2>Hundreds of exclusive spaces nationwide, ready to be filled with your idea.</h2>
+          <h1 class="h1">Rent a space, launch an idea</h1>
+          <h2 class="h2">Hundreds of exclusive spaces nationwide, ready to be filled with your idea.</h2>
         </div>
       </div>
     </div>
@@ -66,84 +70,28 @@
         <div class="col-md-12">
           <h2 class="title">{{'Next events' | trans}}</h2>
         </div>
+
+        <div id="events-calendar" class="col-md-12">
+        </div><!-- #events-calendar -->
       </div><!-- .row -->
     </div><!-- .container -->
-
     <div class="bg-parallax"></div>
   </section><!-- #events -->
 
-  <section id="contact-us">
-    <div class="container">
+  <div id="event-overlay" class=""></div>
+    <div id="event-info" class="">
+        <div class="container">
+          <div class="col-md-12 no-float event-description">
+            <img id="event-img" class="img-responsive" src="">
 
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="title">{{'Get in touch by email' | trans}}</h2>
+            <h3 id="event-title">Evento 1</h3>
+
+            <p id="event-description">Lorem ìpsum dolor aemete</p>
+          </div>
         </div>
-      </div><!-- .row -->
+    </div>
 
-      <ul class="nav nav-justified nav-boxes">
-        <li class="active"><a href="#tab1">{{'Interesado 1' | trans}}</a></li>
-        <li><a href="#tab2">{{'Interesado 2' | trans}}</a></li>
-        <li><a href="#tab3">{{'Interesado 3' | trans}}</a></li>
-      </ul>
-
-      <!-- Contact form -->
-      <div class="row">
-        <div class="col-md-6">
-          <form class="" role="form" id="profile_candidate" action="" method="post" {{ form_enctype(form) }}>
-            <div class="form-group">
-              <label class="control-label required">{{ "Name" | trans }}</label>
-              {{ form_widget(form.name, { 'attr': { 'class': 'form-control'} }) }}
-            </div><!-- .form-group -->
-
-            <div class="form-group">
-              <label class="control-label required">{{ "Email" | trans }}</label>
-              {{ form_widget(form.email, { 'attr': { 'class': 'form-control'} }) }}
-            </div><!-- .form-group -->
-
-            <div class="form-group">
-              <label class="control-label required">{{ "Message" | trans }}</label>
-              {{ form_widget(form.message, { 'attr': { 'class': 'form-control', 'rows' : '6'} }) }}
-            </div><!-- .form-group -->
-
-            {{ form_rest(form) }}
-
-            <div class="form-group">
-              <button id="send" type="submit" class="btn btn-large btn-blue mt20">
-                  {{ 'Send'|trans }}
-              </button>
-            </div><!-- .form-group -->
-
-          </form><!-- .form-horizontal -->
-        </div><!-- .col-md-6 -->
-
-        <div id="contact-tabs" class="col-md-6">
-          <div id="tab1" class="tab-active">
-            <h3>{{'Interesado 1'| trans}}</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum rutrum est, eu tincidunt sem viverra et. Cras tristique faucibus turpis a interdum. Mauris sit amet eros nulla.
-            </p>
-          </div><!-- #tab1 -->
-
-          <div id="tab2">
-            <h3>{{'Interesado 2'| trans}}</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum rutrum est, eu tincidunt sem viverra et. Cras tristique faucibus turpis a interdum. Mauris sit amet eros nulla.
-            </p>
-          </div><!-- #tab2 -->
-
-          <div id="tab3">
-            <h3>{{'Interesado 3'| trans}}</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum rutrum est, eu tincidunt sem viverra et. Cras tristique faucibus turpis a interdum. Mauris sit amet eros nulla.
-            </p>
-          </div><!-- #tab3 -->
-        </div><!-- .col-md-6 -->
-      </div><!-- .row -->
-      <!-- end contact form -->
-
-    </div><!-- .container -->
-  </section><!-- #contact-us -->
+  {% include 'FrontendBundle:Sections:contact-us.html.twig' %}
 
 {% endblock %}
 
@@ -152,22 +100,7 @@
 {% endblock %}
 
 {% block javascripts %}
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.nav-boxes li a').bind('click', function(event) {
-        event.preventDefault();
-        var clicked = $(this);
-
-        if (!clicked.hasClass('active')) {
-          var element_active = $('.nav-boxes li.active');
-          var tab_active = $(element_active.children('a').attr('href'));
-          element_active.removeClass('active');
-          tab_active.removeClass('tab-active');
-          clicked.parent('li').addClass('active');
-          $(clicked.attr('href')).addClass('tab-active');
-        }
-
-      });
-    });
-  </script>
+  <script type="text/javascript" src="{{ asset('bundles/frontend/js/fullcalendar.min.js') }}"></script>
+  {% include 'FrontendBundle:Commons:contactUsScripts.html.twig' %}
+  {% include 'EventBundle:Commons:getEventsScript.html.twig' %}
 {% endblock %}
