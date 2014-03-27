@@ -1,12 +1,3 @@
 frontend_homepage:
     pattern:  /
     defaults: { _controller: FrontendBundle:Frontend:index }
-
-_demo_secured:
-    resource: "@FrontendBundle/Controller/SecuredController.php"
-    type:     annotation
-
-_demo:
-    resource: "@FrontendBundle/Controller/DemoController.php"
-    type:     annotation
-    prefix:   /demo

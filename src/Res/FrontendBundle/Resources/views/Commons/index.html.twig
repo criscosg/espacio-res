@@ -5,6 +5,7 @@
 {% block stylesheets %}
   {{parent()}}
   <link rel="stylesheet" href="{{asset('bundles/frontend/css/fullcalendar.css')}}">
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDM-_Hy5M3cV9ztoQOKO_ztIo5YL07ygX4&sensor=false"></script>
 {% endblock %}
 
 {% block header %}
@@ -28,122 +29,17 @@
 {% endblock %}
 
 {% block content %}
-  <section id="our-work">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h2 class="title">{{'Qué es RES' | trans}}</h2>
-          <p class="quote">
-            {{'RES es un espacio de creación de inicitivas empresariales socialmente responsables e innovadoras. El fomento del emprendimiento colaborativo y la emplebilidad en sectores económicos clave de Andalucía es la razón de ser del ecosistema RES.' | trans}}
-          </p>
-        </div>
-      </div><!-- .row -->
+  {% include 'FrontendBundle:Sections:our-work.html.twig' %}
 
-      <div class="row mt20">
-        <div class="col-md-4 text-center">
-         <h2 class="fa fa-globe icon-title"></h2>
-         <p>
-          {{ 'RES es un espacio enfocado a satisfacer todas las necesidades de la especie emprendedora. Te ayudaremos a potenciar tu incipiente negocio e impulsar tu carrera. Tendrás a tu disposción Internet por fibra óptica, salas de reuniones, de conferencias, y los servicios de IT necesarios. todo ello en un inmejorable ambiente de trabajo y cooperación.' | trans}}
-         </p>
-        </div>
+  {% include 'FrontendBundle:Sections:location.html.twig' %}
 
-        <div class="col-md-4 text-center">
-          <h2 class="fa fa-rocket icon-title"></h2>
-          <p>
-          {{'RES es mucho más que un espacio de coworking. Es un universo de emprendimiento, donde además de networking, los mentores e inversores que recorren sus diversos ambientes, están deseando nutrirse de tu creatividad en una simbiosis perfecta entre inquietud y experiencia que ayudará a impulsar tus proyectos.' | trans}}
-         </p>
-        </div>
+  {% include 'FrontendBundle:Sections:services.html.twig' %}
 
-        <div class="col-md-4 text-center">
-          <h2 class="fa fa-lightbulb-o icon-title"></h2>
-          <p>
-          {{'A su vez, los habitantes de RES se alimentan de los proyectos, concursos de ideas, e iniciativas que proponen los partners del espacio para que éste sea una fuente más de captación de progreso. Las diferentes compañías e influencers que colaboran con RES promueven jornadas de formación, meetups y encuentros que refuerzan la empleabilidad de sus habitantes.' | trans}}
-         </p>
-        </div>
-      </div><!-- .row -->
-    </div><!-- .container -->
-  </section><!-- #our-work -->
+  {% include 'FrontendBundle:Sections:who-we-are.html.twig' %}
 
-  <section id="location" class="light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h2 class="title">{{'Emplazamiento' | trans}}</h2>
-          <p class="quote">
-            {{'Orientado a atraer a inquietos emprendedores de todas partes de Sevilla, RES está ampliamente conetado, con fácil acceso en coche, bus, bici y metro. Así mismo, se emplaza en uno de los núcleos principales de atividad empresarial: Avenida de República Argentina.' | trans}}
-          </p>
-        </div>
-      </div><!-- .row -->
-    </div><!-- .container -->
-  </section><!-- #location -->
+  {% include 'FrontendBundle:Sections:newsletter.html.twig' %}
 
-  <section id="services">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h2 class="title">{{'Servicios' | trans}}</h2>
-          <p class="quote">
-            {{'RES son emprendendores inquietos, creadores de innovación, creativos tecnológicos, start-ups y pymes, freelancers, inconformistas sociales; y todas aquellas iniciativas, proyectos o negocios que a través de la colaboración favorecerán el surgimiento de una economía socialmente responsable.' | trans}}
-          </p>
-        </div>
-      </div><!-- .row -->
-    </div><!-- .container -->
-  </section><!-- #services -->
-
-  <section id="who-we-are" class="light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h2 class="title">{{'Quiénes son RES' | trans}}</h2>
-          <p class="quote">
-            {{'RES son emprendendores inquietos, creadores de innovación, creativos tecnológicos, start-ups y pymes, freelancers, inconformistas sociales; y todas aquellas iniciativas, proyectos o negocios que a través de la colaboración favorecerán el surgimiento de una economía socialmente responsable.' | trans}}
-          </p>
-        </div>
-      </div><!-- .row -->
-    </div><!-- .container -->
-  </section><!-- #who-we-are -->
-
-  <section id="newsletter">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h2 class="title">{{'Newsletter' | trans}}</h2>
-          <p class="quote">
-            {{'RES son emprendendores inquietos, creadores de innovación, creativos tecnológicos, start-ups y pymes, freelancers, inconformistas sociales; y todas aquellas iniciativas, proyectos o negocios que a través de la colaboración favorecerán el surgimiento de una economía socialmente responsable.' | trans}}
-          </p>
-        </div>
-      </div><!-- .row -->
-    </div><!-- .container -->
-  </section><!-- #who-we-are -->
-
-  <section id="events" class="light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="title">{{'Calendario de eventos' | trans}}</h2>
-        </div>
-      </div><!-- .row -->
-
-      <div class="row">
-        <div id="events-calendar" class="col-md-6">
-        </div><!-- #events-calendar -->
-
-        <div id="event-info" class="col-md-6 collapse">
-            <div class="container">
-              <div class="col-md-12 no-float event-description">
-                <img id="event-img" class="img-responsive" src="">
-
-                <h3 id="event-title"></h3>
-
-                <p id="event-description">
-                </p>
-              </div>
-            </div>
-        </div>
-      </div><!-- .row -->
-    </div><!-- .container -->
-    <div class="bg-parallax"></div>
-  </section><!-- #events -->
+  {% include 'FrontendBundle:Sections:events.html.twig' %}
 
   {% include 'FrontendBundle:Sections:contact-us.html.twig' %}
 
@@ -157,4 +53,9 @@
   <script type="text/javascript" src="{{ asset('bundles/frontend/js/fullcalendar.min.js') }}"></script>
   {% include 'FrontendBundle:Commons:contactUsScripts.html.twig' %}
   {% include 'EventBundle:Commons:getEventsScript.html.twig' %}
+  {% include 'FrontendBundle:Commons:scriptGoogleMap.html.twig' %}
+
+  <script type="text/javascript">
+    initializeMap();
+  </script>
 {% endblock %}

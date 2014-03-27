@@ -53,7 +53,7 @@ a {
 
 /** Bootstrap overwrite **/
 .navbar {
-    min-height: 40px;
+    min-height: 140px;
 
     a {
         color: $light-gray !important;
@@ -61,6 +61,13 @@ a {
         &:hover {
             color: $white !important;
         }
+    }
+
+    .navbar-logo {
+        max-width: 60px;
+        display: block;
+        margin: auto;
+        margin-bottom: 8px;
     }
 }
 
@@ -157,6 +164,10 @@ section {
             border-top: solid 1px #CCCCCC;
         }
     }
+}
+
+#map-canvas {
+    min-height: 400px;
 }
 
 section.light {
