@@ -1,0 +1,12 @@
+services:
+    twig.extension.interface:
+        class: Res\FrontendBundle\Twig\Extension\InterfaceExtension
+        arguments: 
+            container: @service_container
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.bxslider:
+            class: Res\FrontendBundle\Twig\Extension\BxSliderExtension
+            tags:
+                - { name: twig.extension }
