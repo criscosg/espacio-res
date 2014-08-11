@@ -3,10 +3,12 @@ html {
   position: relative; }
 
 body {
-  background-color: #eeeeee; }
+  background-color: #eeeeee;
+  font-family: Sans-Serif, Helvetica, Arial; }
 
 a {
-  color: white !important; }
+  color: white !important;
+  outline: none !important; }
 
 .res-navbar a {
   padding: 12px 15px; }
@@ -30,13 +32,22 @@ a {
 .mt20 {
   margin-top: 20px; }
 
+.no-float {
+  display: block;
+  float: none; }
+
 /** Bootstrap overwrite **/
 .navbar {
-  min-height: 40px; }
+  min-height: 140px; }
   .navbar a {
     color: #999999 !important; }
     .navbar a:hover {
       color: white !important; }
+  .navbar .navbar-logo {
+    max-width: 60px;
+    display: block;
+    margin: auto;
+    margin-bottom: 8px; }
 
 .navbar-inverse {
   background-color: #1b1b1b; }
@@ -48,7 +59,7 @@ a {
 #banner-top {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 630px;
   overflow: hidden;
   text-align: center;
   margin-top: 40px;
@@ -63,18 +74,32 @@ a {
     z-index: 20; }
     #banner-top .image img {
       width: 100%; }
+  #banner-top .overlay {
+    background: url("../../bundles/frontend/img/gradient.png") repeat-x scroll 0 0 transparent;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 21; }
   #banner-top .text {
     position: relative;
     text-align: center;
     z-index: 30;
     color: #FFF;
-    padding-top: 110px; }
+    padding-top: 100px;
+    text-shadow: 0 2px 3px black; }
+    #banner-top .text img {
+      max-width: 200px; }
 
 section {
   display: block;
   position: relative; }
   section .container {
-    padding: 70px 0;
+    padding-top: 60px;
+    padding-bottom: 60px;
     margin-left: auto;
     margin-right: auto;
     max-width: 950px; }
@@ -84,12 +109,26 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; }
+  section .section-title {
+    font-size: 26px;
+    line-height: 32px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    padding: 0; }
+  section .column-main {
+    background-color: white; }
+    section .column-main .content {
+      padding: 35px 20px 15px;
+      border-top: solid 1px #CCCCCC; }
+
+#map-canvas {
+  min-height: 400px; }
 
 section.light {
   background-color: white; }
 
 section.light:before {
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAJ0lEQVQIW2NkwA4kGbGISwLFnqNLgAVBipEl4ILIEiiCMAkMQZAEADf0BSAVgBNTAAAAAElFTkSuQmCC") repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAJ0lEQVQIW2NkwA4kGbGISwLFnqNLgAVBipEl4ILIEiiCMAkMQZAEADf0BSAVgBNTAAAAAElFTkSuQmCC") repeat scroll 0 0 transparent;
   content: "";
   display: block;
   height: 10px;
@@ -98,8 +137,8 @@ section.light:before {
   right: 0;
   position: absolute; }
 
-section#who-we-are .bg-parallax {
-  background-image: url("../../bundles/frontend/img/banner-top-home.jpg"); }
+section#events .bg-parallax {
+  background-image: url("../../bundles/frontend/img/resilencia-banner-top.jpg"); }
 
 footer {
   background-color: #1b1b1b;
@@ -139,7 +178,106 @@ footer {
     border-color: #2abcbd; }
 
 form label {
-  color: #999999; }
+  color: #999999;
+  font-weight: normal; }
+form textarea {
+  resize: none; }
+form .form-group {
+  position: relative; }
+form .btn-large {
+  padding: 5px 30px;
+  border-radius: 0px !important;
+  font-size: 18px;
+  letter-spacing: 2px; }
+form .required:after {
+  content: "*";
+  display: inline-block;
+  margin-left: 5px;
+  width: 10px;
+  position: absolute;
+  top: 0; }
+
+.nav-boxes {
+  margin-bottom: 50px;
+  margin-top: 35px;
+  border: solid 1px #CCCCCC;
+  color: #999999;
+  text-transform: uppercase; }
+  .nav-boxes .active {
+    background-color: white; }
+    .nav-boxes .active a {
+      color: #2abcbd !important;
+      font-weight: bold; }
+  .nav-boxes li {
+    border-right: solid 1px #CCCCCC; }
+    .nav-boxes li:last-child {
+      border-right: none !important; }
+    .nav-boxes li a {
+      padding: 15px;
+      color: #999999 !important; }
+      .nav-boxes li a:hover {
+        background-color: white;
+        color: #2abcbd !important; }
+      .nav-boxes li a:focus {
+        background-color: white;
+        color: #2abcbd !important; }
+
+#contact-tabs div {
+  display: none; }
+#contact-tabs .tab-active {
+  display: block !important; }
+
+/** Fullcalendar **/
+#events-calendar {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+#event-info {
+  overflow: hidden; }
+  #event-info a {
+    color: #2abcbd !important; }
+  #event-info .container {
+    padding: 0 15px; }
+  #event-info .no-float {
+    margin: auto; }
+  #event-info .event-description {
+    background-color: white;
+    padding: 5px; }
+
+#event-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  background-color: #1b1b1b;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  display: none; }
+
+.fc-day .event-day {
+  margin-left: 8px;
+  margin-top: 5px;
+  font-size: 25px;
+  color: #2abcbd; }
+.fc-day div {
+  position: relative; }
+
+.txt-shadow {
+  text-shadow: 1px 2px 3px black; }
+
+.fc-button {
+  border: 0px;
+  background-image: none !important;
+  background-color: white !important; }
+  .fc-button:hover {
+    background-color: #F5F5F5 !important; }
 
 /*!
  *  Font Awesome 4.0.3 by @davegandy - http://fontawesome.io - @fontawesome

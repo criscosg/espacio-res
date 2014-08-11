@@ -1,0 +1,65 @@
+{% extends "FrontendBundle:New:Layouts/1column.html.twig" %}
+{% block title %}{{ "Proyecto Res "|trans }}{% endblock %}
+{% block description %}{{"Un proyecto muy bonito"|trans}}{% endblock %}
+
+{% block content %}
+
+	<div id="banner-1" class="banner"></div>
+
+	<div class="row-block" id="letter-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<img src="{{asset('bundles/frontend/img/banner/letters.png')}}">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="banner-2" class="banner banner-message">
+		<div class="message" id="message-2a">
+			<p>Esto es un mensaje de texto<p>
+			<img src="{{asset('bundles/frontend/img/logo_s.png')}}" class="img">
+		</div>
+		<div class="message" id="message-2b">
+			<p>Duis dictum, ante nec fringilla blandit, nibh felis auctor elit, a consequat lorem sapien eget purus. Integer pulvinar ultrices mi at dapibus</p>
+		</div>
+	</div>
+
+	<div class="row-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					Capa despues de banner 2
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="banner-3" class="banner banner-message">
+		<div class="message" id="message-3a">
+			<p>Praesent pulvinar diam vel neque tristique ultricies. Phasellus nec nunc ut mi tincidunt varius ut eget ligula</p>
+		</div>
+		<div class="message" id="message-3b">
+			<p>Integer gravida odio in dui ornare, et volutpat augue pretium</p>
+		</div>
+	</div>
+
+	<div class="row-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					Capa despues de banner 3
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="banner-4" class="banner"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('bundles/frontend/js/scrollTo.js')}}"></script>
+	<script src="{{asset('bundles/frontend/js/utils.js')}}"></script>
+{% endblock %}

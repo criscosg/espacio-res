@@ -1,3 +1,7 @@
 frontend_homepage:
     pattern:  /
     defaults: { _controller: FrontendBundle:Frontend:index }
+
+frontend_new_homepage:
+    pattern:  /new
+    defaults: { _controller: FrontendBundle:Frontend:indexNew }

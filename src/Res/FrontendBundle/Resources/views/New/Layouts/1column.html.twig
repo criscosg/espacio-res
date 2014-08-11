@@ -1,0 +1,13 @@
+{% extends 'FrontendBundle:New:base.html.twig' %}
+
+{% block header %}
+    {% include 'FrontendBundle:New:Commons/nav.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    {% block content %}{% endblock %}
+{% endblock %}
+
+{% block footer %}
+    {% include 'FrontendBundle:New:Commons/foot.html.twig' %}
+{% endblock %}

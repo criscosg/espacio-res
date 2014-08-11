@@ -15,4 +15,13 @@ class FrontendController extends CustomController
 
         return $this->render('FrontendBundle:Commons:index.html.twig', array('form' => $form->createView()));
     }
+
+    public function indexNewAction()
+    {
+        //$form = $this->createForm(new ContactType());
+
+        //return $this->render('FrontendBundle:Commons:index.html.twig', array('form' => $form->createView()));
+        return $this->render('FrontendBundle:New:Pages/index.html.twig');
+    }
+
 }
